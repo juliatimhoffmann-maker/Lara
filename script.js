@@ -96,50 +96,50 @@ function animateCounter(element, target) {
 const quizQuestions = [
     {
         question: "Wer gilt als Erfinder des ersten Automobils?",
-        answers: ["Henry Ford", "Carl Benz", "Ferdinand Porsche", "Gottlieb Daimler"],
+        answers: ["Henry Ford", "Carl Benz", "Ferdinand Porsche"],
         correct: 1,
         explanation: "Carl Benz hat 1886 das erste Automobil erfunden!"
     },
     {
         question: "Wann wurde Mercedes-Benz gegründet?",
-        answers: ["1886", "1910", "1926", "1945"],
-        correct: 2,
+        answers: ["1886", "1926", "1945"],
+        correct: 1,
         explanation: "Mercedes-Benz wurde 1926 durch die Fusion von Daimler und Benz gegründet."
     },
     {
         question: "Was hat Mercedes-Benz als erster Autohersteller in Serienfahrzeugen eingebaut?",
-        answers: ["Klimaanlage", "Airbag", "Navi", "Sitzheizung"],
+        answers: ["Klimaanlage", "Airbag", "Sitzheizung"],
         correct: 1,
         explanation: "Mercedes-Benz war Pionier beim Einbau von Airbags in Serienfahrzeugen!"
     },
     {
         question: "Wie viel hat der Bau des Mercedes-Benz Museums gekostet (ohne Autos)?",
-        answers: ["50 Millionen €", "100 Millionen €", "150 Millionen €", "200 Millionen €"],
-        correct: 2,
+        answers: ["50 Millionen €", "150 Millionen €", "200 Millionen €"],
+        correct: 1,
         explanation: "Das Museum hat über 150 Millionen Euro gekostet – ohne die wertvollen Autos darin!"
     },
     {
         question: "Was passiert im Mercedes-Benz Museum, wenn es brennt?",
-        answers: ["Sprinkleranlage mit Wasser", "Roboter löschen das Feuer", "Ein Tornado entzieht den Sauerstoff", "Die Autos fahren automatisch raus"],
-        correct: 2,
+        answers: ["Sprinkleranlage mit Wasser", "Ein Tornado entzieht den Sauerstoff", "Die Autos fahren automatisch raus"],
+        correct: 1,
         explanation: "Ein Tornado entzieht dem Feuer den Sauerstoff, damit die Autos nicht durch Wasser beschädigt werden!"
     },
     {
         question: "Wie viel hat ein anonymer Käufer für eines der seltensten Mercedes-Autos bezahlt?",
-        answers: ["10 Millionen €", "50 Millionen €", "100 Millionen €", "160 Millionen €"],
-        correct: 3,
+        answers: ["50 Millionen €", "100 Millionen €", "160 Millionen €"],
+        correct: 2,
         explanation: "160 Millionen Euro! Das Auto gibt es nur 2 Mal auf der ganzen Welt."
     },
     {
         question: "Wofür steht 'KI' in der IT-Abteilung?",
-        answers: ["Kontroll-Instrument", "Künstliche Intelligenz", "Kern-Information", "Kluge Ideen"],
+        answers: ["Kontroll-Instrument", "Künstliche Intelligenz", "Kern-Information"],
         correct: 1,
         explanation: "KI steht für Künstliche Intelligenz – ein großes Thema bei Mercedes-Benz!"
     },
     {
         question: "Wo hat Lara ihr Praktikum bei Mercedes-Benz gemacht?",
-        answers: ["München", "Berlin", "Stuttgart", "Wiesbaden"],
-        correct: 2,
+        answers: ["München", "Stuttgart", "Berlin"],
+        correct: 1,
         explanation: "In Stuttgart – dem Herzen von Mercedes-Benz! 🚗"
     }
 ];
