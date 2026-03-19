@@ -333,9 +333,9 @@ const quizQuestions = [
     },
     {
         question: "Was passiert im Mercedes-Benz Museum, wenn es brennt?",
-        answers: ["Sprinkleranlage mit Wasser", "Ein Tornado entzieht den Sauerstoff", "Die Autos fahren automatisch raus"],
+        answers: ["Sprinkleranlage mit Wasser", "Ein künstlicher Tornado saugt den Rauch ab", "Die Autos fahren automatisch raus"],
         correct: 1,
-        explanation: "Ein Tornado entzieht dem Feuer den Sauerstoff, damit die Autos nicht durch Wasser beschädigt werden!"
+        explanation: "Der stärkste künstliche Tornado der Welt (Guinness-Rekord!) saugt den Rauch aus dem Gebäude ab!"
     },
     {
         question: "Wie viel wurde 2022 für das teuerste Auto der Welt (Mercedes 300 SLR) bezahlt?",
