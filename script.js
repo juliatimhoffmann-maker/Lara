@@ -218,8 +218,11 @@ function checkPassword() {
         document.getElementById('login-screen').style.transition = 'opacity 0.5s ease';
         setTimeout(() => {
             document.getElementById('login-screen').style.display = 'none';
-            document.getElementById('main-website').style.display = 'block';
-            document.getElementById('main-website').style.animation = 'fadeIn 0.5s ease';
+            const main = document.getElementById('main-website');
+            main.style.position = 'relative';
+            main.style.visibility = 'visible';
+            main.style.opacity = '1';
+            main.style.animation = 'fadeIn 0.5s ease';
             startCountAnimation();
         }, 500);
     } else {
