@@ -1,213 +1,3 @@
-// ==================== LOGIN BACKGROUND CANVAS ====================
-(function() {
-    const canvas = document.getElementById('login-bg-canvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-
-    function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    // Neural network particles
-    const particles = [];
-    const particleCount = 80;
-    for (let i = 0; i < particleCount; i++) {
-        particles.push({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            vx: (Math.random() - 0.5) * 0.5,
-            vy: (Math.random() - 0.5) * 0.5,
-            r: Math.random() * 2 + 1,
-            pulse: Math.random() * Math.PI * 2
-        });
-    }
-
-    // AMG GT silhouette points (scaled to canvas)
-    function getCarPoints() {
-        const w = canvas.width;
-        const h = canvas.height;
-        const cx = w * 0.5;
-        const cy = h * 0.62;
-        const scale = Math.min(w, h) * 0.0028;
-
-        const pts = [
-            [-180, 0], [-170, -8], [-155, -14], [-140, -18],
-            [-120, -22], [-105, -38], [-95, -48], [-80, -55],
-            [-60, -58], [-40, -58], [-20, -56], [0, -55],
-            [20, -56], [40, -58], [60, -58], [80, -52],
-            [95, -42], [105, -35], [120, -22], [140, -16],
-            [155, -12], [170, -8], [180, 0],
-            [175, 6], [160, 8], [140, 8],
-            [120, 10], [100, 10], [80, 10],
-            [-80, 10], [-100, 10], [-120, 10],
-            [-140, 8], [-160, 8], [-175, 6], [-180, 0]
-        ];
-
-        return pts.map(([px, py]) => [cx + px * scale, cy + py * scale]);
-    }
-
-    // Circuit board traces
-    const traces = [];
-    for (let i = 0; i < 15; i++) {
-        const startX = Math.random() * canvas.width;
-        const startY = Math.random() * canvas.height;
-        const segments = [];
-        let x = startX, y = startY;
-        for (let j = 0; j < 4 + Math.floor(Math.random() * 4); j++) {
-            const horizontal = Math.random() > 0.5;
-            const len = 30 + Math.random() * 80;
-            const dir = Math.random() > 0.5 ? 1 : -1;
-            const nx = horizontal ? x + len * dir : x;
-            const ny = horizontal ? y : y + len * dir;
-            segments.push({ x1: x, y1: y, x2: nx, y2: ny });
-            x = nx;
-            y = ny;
-        }
-        traces.push({ segments, alpha: 0.03 + Math.random() * 0.06 });
-    }
-
-    let time = 0;
-
-    function draw() {
-        time += 0.008;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Dark gradient background
-        const bg = ctx.createRadialGradient(
-            canvas.width * 0.5, canvas.height * 0.55, 0,
-            canvas.width * 0.5, canvas.height * 0.55, canvas.width * 0.7
-        );
-        bg.addColorStop(0, '#12121f');
-        bg.addColorStop(0.5, '#0c0c18');
-        bg.addColorStop(1, '#08080e');
-        ctx.fillStyle = bg;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        // Circuit traces
-        traces.forEach(trace => {
-            trace.segments.forEach(seg => {
-                ctx.strokeStyle = `rgba(196, 163, 90, ${trace.alpha})`;
-                ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(seg.x1, seg.y1);
-                ctx.lineTo(seg.x2, seg.y2);
-                ctx.stroke();
-            });
-        });
-
-        // Draw & connect particles (neural network)
-        for (let i = 0; i < particles.length; i++) {
-            const p = particles[i];
-            p.x += p.vx;
-            p.y += p.vy;
-            p.pulse += 0.02;
-            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
-            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
-
-            // Connect nearby particles
-            for (let j = i + 1; j < particles.length; j++) {
-                const q = particles[j];
-                const dx = p.x - q.x;
-                const dy = p.y - q.y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < 150) {
-                    const alpha = (1 - dist / 150) * 0.15;
-                    ctx.strokeStyle = `rgba(196, 163, 90, ${alpha})`;
-                    ctx.lineWidth = 0.5;
-                    ctx.beginPath();
-                    ctx.moveTo(p.x, p.y);
-                    ctx.lineTo(q.x, q.y);
-                    ctx.stroke();
-                }
-            }
-
-            const glow = 0.3 + Math.sin(p.pulse) * 0.2;
-            ctx.fillStyle = `rgba(196, 163, 90, ${glow})`;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fill();
-        }
-
-        // AMG GT silhouette
-        const carPts = getCarPoints();
-        if (carPts.length > 2) {
-            // Glow effect
-            ctx.shadowColor = 'rgba(196, 163, 90, 0.4)';
-            ctx.shadowBlur = 20;
-            ctx.strokeStyle = 'rgba(196, 163, 90, 0.25)';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.moveTo(carPts[0][0], carPts[0][1]);
-            for (let i = 1; i < carPts.length; i++) {
-                ctx.lineTo(carPts[i][0], carPts[i][1]);
-            }
-            ctx.closePath();
-            ctx.stroke();
-
-            // Fill with subtle gradient
-            const carGrad = ctx.createLinearGradient(
-                carPts[0][0], carPts[0][1] - 60,
-                carPts[0][0], carPts[0][1] + 20
-            );
-            carGrad.addColorStop(0, 'rgba(196, 163, 90, 0.06)');
-            carGrad.addColorStop(1, 'rgba(196, 163, 90, 0.02)');
-            ctx.fillStyle = carGrad;
-            ctx.fill();
-            ctx.shadowBlur = 0;
-
-            // Animated scan line over car
-            const scanY = carPts[0][1] - 70 + Math.sin(time) * 40;
-            ctx.strokeStyle = `rgba(100, 200, 255, ${0.15 + Math.sin(time * 2) * 0.1})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(carPts[0][0] - 20, scanY);
-            ctx.lineTo(carPts[carPts.length - 2][0] + 20, scanY);
-            ctx.stroke();
-
-            // Data points on car
-            for (let i = 0; i < carPts.length; i += 3) {
-                const glow = 0.4 + Math.sin(time * 3 + i) * 0.3;
-                ctx.fillStyle = `rgba(100, 200, 255, ${glow})`;
-                ctx.beginPath();
-                ctx.arc(carPts[i][0], carPts[i][1], 2, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        // "AI" text watermark
-        ctx.font = `${Math.min(canvas.width, canvas.height) * 0.08}px Poppins, sans-serif`;
-        ctx.fillStyle = 'rgba(196, 163, 90, 0.04)';
-        ctx.textAlign = 'center';
-        ctx.fillText('AMG GT × AI', canvas.width * 0.5, canvas.height * 0.85);
-
-        // Mercedes star hint (three lines from center)
-        const starCx = canvas.width * 0.5;
-        const starCy = canvas.height * 0.3;
-        const starR = Math.min(canvas.width, canvas.height) * 0.06;
-        const starAlpha = 0.06 + Math.sin(time) * 0.03;
-
-        ctx.strokeStyle = `rgba(196, 163, 90, ${starAlpha})`;
-        ctx.lineWidth = 1.5;
-        for (let a = 0; a < 3; a++) {
-            const angle = (a * 120 - 90) * Math.PI / 180;
-            ctx.beginPath();
-            ctx.moveTo(starCx, starCy);
-            ctx.lineTo(starCx + Math.cos(angle) * starR, starCy + Math.sin(angle) * starR);
-            ctx.stroke();
-        }
-        ctx.beginPath();
-        ctx.arc(starCx, starCy, starR, 0, Math.PI * 2);
-        ctx.stroke();
-
-        requestAnimationFrame(draw);
-    }
-
-    draw();
-})();
-
 // ==================== PASSWORT SCHUTZ ====================
 function checkPassword() {
     const input = document.getElementById('password-input').value;
@@ -309,51 +99,51 @@ function animateCounter(element, target) {
 const quizQuestions = [
     {
         question: "Wer gilt als Erfinder des ersten Automobils?",
-        answers: ["Henry Ford", "Carl Benz", "Ferdinand Porsche"],
-        correct: 1,
+        answers: ["Henry Ford", "Ferdinand Porsche", "Carl Benz"],
+        correct: 2,
         explanation: "Carl Benz hat 1886 das erste Automobil erfunden!"
     },
     {
         question: "Wann wurde Mercedes-Benz gegründet?",
-        answers: ["1886", "1926", "1945"],
-        correct: 1,
+        answers: ["1926", "1886", "1945"],
+        correct: 0,
         explanation: "Mercedes-Benz wurde 1926 durch die Fusion von Daimler und Benz gegründet."
     },
     {
         question: "Was brachte Mercedes-Benz 1981 als erster europäischer Hersteller in die Serienproduktion?",
-        answers: ["Klimaanlage", "Airbag mit Gurtstraffer", "Sitzheizung"],
-        correct: 1,
+        answers: ["Klimaanlage", "Sitzheizung", "Airbag mit Gurtstraffer"],
+        correct: 2,
         explanation: "Mercedes-Benz war 1981 der erste europäische Hersteller mit Airbag und Gurtstraffer in Serie!"
     },
     {
         question: "Wie viel hat der Bau des Mercedes-Benz Museums gekostet (ohne Autos)?",
-        answers: ["50 Millionen €", "150 Millionen €", "200 Millionen €"],
+        answers: ["200 Millionen €", "150 Millionen €", "50 Millionen €"],
         correct: 1,
         explanation: "Das Museum hat rund 150 Millionen Euro gekostet – ohne die wertvollen Autos darin!"
     },
     {
         question: "Was passiert im Mercedes-Benz Museum, wenn es brennt?",
-        answers: ["Sprinkleranlage mit Wasser", "Ein künstlicher Tornado saugt den Rauch ab", "Die Autos fahren automatisch raus"],
-        correct: 1,
+        answers: ["Die Autos fahren automatisch raus", "Sprinkleranlage mit Wasser", "Ein künstlicher Tornado saugt den Rauch ab"],
+        correct: 2,
         explanation: "Der stärkste künstliche Tornado der Welt (Guinness-Rekord!) saugt den Rauch aus dem Gebäude ab!"
     },
     {
         question: "Wie viel wurde 2022 für das teuerste Auto der Welt (Mercedes 300 SLR) bezahlt?",
-        answers: ["50 Millionen €", "100 Millionen €", "135 Millionen €"],
-        correct: 2,
+        answers: ["135 Millionen €", "100 Millionen €", "50 Millionen €"],
+        correct: 0,
         explanation: "135 Millionen Euro! Das Uhlenhaut Coupé gibt es nur 2 Mal auf der ganzen Welt."
     },
     {
         question: "Wofür steht 'KI' in der IT-Abteilung?",
-        answers: ["Kontroll-Instrument", "Künstliche Intelligenz", "Kern-Information"],
-        correct: 1,
+        answers: ["Kern-Information", "Kontroll-Instrument", "Künstliche Intelligenz"],
+        correct: 2,
         explanation: "KI steht für Künstliche Intelligenz – ein großes Thema bei Mercedes-Benz!"
     },
     {
         question: "Wo hat Lara ihr Praktikum bei Mercedes-Benz gemacht?",
-        answers: ["München", "Stuttgart", "Berlin"],
-        correct: 1,
-        explanation: "In Stuttgart – dem Herzen von Mercedes-Benz! 🚗"
+        answers: ["Stuttgart", "München", "Berlin"],
+        correct: 0,
+        explanation: "In Stuttgart – dem Herzen von Mercedes-Benz!"
     }
 ];
 
