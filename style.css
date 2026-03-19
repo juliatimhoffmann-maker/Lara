@@ -186,20 +186,19 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 40%, #0d0d0d 100%);
+    background: url('images/Mercedes FA Gruppenfoto 18.03-2026 - 1920 x 1069 (2) (1).jpg') center center / cover no-repeat;
     overflow: hidden;
 }
 
 .hero-section::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle at 30% 50%, rgba(196, 163, 90, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 70% 50%, rgba(200, 150, 200, 0.06) 0%, transparent 50%);
-    animation: heroGlow 8s ease-in-out infinite alternate;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(26, 26, 46, 0.75) 40%, rgba(0, 0, 0, 0.7) 100%);
+    z-index: 1;
 }
 
 @keyframes heroGlow {
@@ -233,6 +232,7 @@ body {
     letter-spacing: 8px;
     text-transform: uppercase;
     margin-bottom: 10px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.5);
 }
 
 .hero-subtitle {
@@ -241,22 +241,25 @@ body {
     color: #c4a35a;
     letter-spacing: 6px;
     margin-bottom: 25px;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .hero-description {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.85);
     font-size: 14px;
-    font-weight: 300;
+    font-weight: 400;
     line-height: 1.8;
     margin-bottom: 15px;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
 .hero-tagline {
     font-size: 16px;
-    color: rgba(200, 150, 200, 0.8);
-    font-weight: 400;
+    color: rgba(200, 150, 200, 0.9);
+    font-weight: 500;
     letter-spacing: 2px;
     margin-bottom: 40px;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.6);
 }
 
 .hero-btn {
