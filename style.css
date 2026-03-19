@@ -435,6 +435,7 @@ body {
     object-fit: cover;
     border-radius: 16px;
     display: block;
+    background: linear-gradient(135deg, #2a2a3e, #1a1a2e);
 }
 
 /* ==================== BETRIEBSBESCHREIBUNG ==================== */
@@ -498,10 +499,38 @@ body {
     object-fit: cover;
     border-radius: 12px;
     transition: transform 0.3s;
+    background: linear-gradient(135deg, #e8e8e8, #f5f5f5);
 }
 
 .praktikum-image:hover {
     transform: scale(1.03);
+}
+
+/* Fallback for broken/missing images */
+.praktikum-image[alt]::after,
+.section-image[alt]::after,
+.banner-image[alt]::after {
+    content: attr(alt);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e8e6e0, #f0ece4);
+    color: #999;
+    font-size: 13px;
+    text-align: center;
+    padding: 10px;
+    border-radius: 12px;
+}
+
+.galerie-item,
+.section-image-banner {
+    position: relative;
+    overflow: hidden;
 }
 
 /* ==================== TAGESBERICHT ==================== */
@@ -1053,6 +1082,23 @@ footer {
 }
 
 /* ==================== RESPONSIVE ==================== */
+
+/* ---- LARGE TABLETS & SMALL LAPTOPS (max 1024px) ---- */
+@media (max-width: 1024px) {
+    .section-container {
+        max-width: 95%;
+    }
+
+    .galerie-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .facts-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+}
+
+/* ---- TABLETS (max 768px) ---- */
 @media (max-width: 768px) {
     .nav-toggle {
         display: block;
@@ -1076,19 +1122,29 @@ footer {
 
     .nav-links a {
         padding: 12px 20px;
+        font-size: 15px;
     }
 
     .hero-ki-badge {
         bottom: 20px;
         right: 20px;
+        font-size: 12px;
     }
 
     .section {
         padding: 70px 15px;
     }
 
+    .section-title {
+        font-size: clamp(24px, 5vw, 36px);
+    }
+
     .timeline {
         padding-left: 30px;
+    }
+
+    .timeline-content {
+        padding: 22px;
     }
 
     .stats-bar {
@@ -1097,12 +1153,372 @@ footer {
         gap: 25px;
     }
 
+    .stuttgart-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .praktikum-content {
+        grid-template-columns: 1fr;
+    }
+
+    .galerie-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .tagesbericht-images {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
     #quiz-container {
         padding: 25px 20px;
     }
 
+    #quiz-question {
+        font-size: 17px;
+    }
+
     #chat-messages {
         height: 280px;
+    }
+
+    .facts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .betrieb-beschreibung {
+        padding: 25px 20px;
+    }
+
+    .campus-galerie {
+        padding: 20px;
+    }
+}
+
+/* ---- SMALL TABLETS / LARGE PHONES (max 600px) ---- */
+@media (max-width: 600px) {
+    #navbar {
+        padding: 12px 15px;
+    }
+
+    .nav-brand {
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+
+    .hero-star-big {
+        font-size: 60px;
+    }
+
+    .hero-title {
+        letter-spacing: 4px;
+    }
+
+    .hero-subtitle {
+        letter-spacing: 3px;
+    }
+
+    .hero-description {
+        font-size: 12px;
+        padding: 0 10px;
+    }
+
+    .hero-tagline {
+        font-size: 13px;
+        letter-spacing: 1px;
+    }
+
+    .hero-btn {
+        padding: 12px 30px;
+        font-size: 13px;
+    }
+
+    .section {
+        padding: 50px 12px;
+    }
+
+    .section-intro {
+        font-size: 13px;
+        margin-bottom: 40px;
+    }
+
+    .stuttgart-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .stuttgart-card {
+        padding: 25px 20px;
+    }
+
+    .galerie-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .praktikum-image {
+        height: 180px;
+    }
+
+    .tagesbericht {
+        padding: 25px 18px;
+    }
+
+    .tagesbericht-images {
+        grid-template-columns: 1fr;
+    }
+
+    .tagesbericht-titel {
+        font-size: 17px;
+    }
+
+    .timeline-content h3 {
+        font-size: 16px;
+    }
+
+    .login-container {
+        padding: 35px 25px;
+        width: 92%;
+    }
+
+    .login-star {
+        font-size: 45px;
+    }
+
+    .login-title {
+        font-size: 22px;
+        letter-spacing: 3px;
+    }
+
+    .login-subtitle {
+        font-size: 12px;
+        margin-bottom: 25px;
+    }
+
+    .profile-circle {
+        width: 65px;
+        height: 65px;
+        font-size: 22px;
+    }
+
+    .praktikum-profile h3 {
+        font-size: 18px;
+    }
+
+    .problemfrage-card {
+        padding: 25px 20px;
+    }
+
+    .problemfrage-text {
+        font-size: 15px;
+    }
+
+    .fact-card {
+        padding: 25px 20px;
+    }
+
+    .end-message {
+        padding: 25px 20px;
+    }
+
+    .chat-section h3 {
+        font-size: 18px;
+    }
+
+    #chat-messages {
+        height: 250px;
+        padding: 15px;
+    }
+
+    .chat-bubble {
+        font-size: 12px;
+        max-width: 85%;
+    }
+
+    .chat-input-area {
+        flex-direction: column;
+    }
+
+    .chat-input-area button {
+        width: 100%;
+    }
+
+    #quiz-question {
+        font-size: 16px;
+    }
+
+    .quiz-answer-btn {
+        padding: 12px 16px;
+        font-size: 13px;
+    }
+
+    .banner-image {
+        max-height: 220px;
+    }
+}
+
+/* ---- SMALL PHONES (max 380px) ---- */
+@media (max-width: 380px) {
+    .hero-star-big {
+        font-size: 45px;
+    }
+
+    .hero-title {
+        letter-spacing: 2px;
+    }
+
+    .hero-subtitle {
+        letter-spacing: 2px;
+        font-size: 14px;
+    }
+
+    .hero-description {
+        font-size: 11px;
+    }
+
+    .section {
+        padding: 40px 10px;
+    }
+
+    .section-title {
+        font-size: 22px;
+    }
+
+    .login-container {
+        padding: 30px 20px;
+    }
+
+    .login-title {
+        font-size: 20px;
+    }
+
+    #password-input {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    #login-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .stat-number {
+        font-size: 26px;
+    }
+
+    .stat-label {
+        font-size: 11px;
+    }
+
+    .timeline {
+        padding-left: 25px;
+    }
+
+    .timeline-icon {
+        width: 26px;
+        height: 26px;
+        font-size: 12px;
+        left: -33px;
+    }
+
+    .timeline-content {
+        padding: 18px;
+    }
+
+    .praktikum-image {
+        height: 150px;
+    }
+
+    .tagesbericht {
+        padding: 20px 15px;
+    }
+}
+
+/* ---- TOUCH DEVICE IMPROVEMENTS ---- */
+@media (hover: none) and (pointer: coarse) {
+    .quiz-answer-btn {
+        min-height: 48px;
+    }
+
+    .nav-links a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+
+    .hero-btn {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    #login-btn {
+        min-height: 48px;
+    }
+
+    #password-input {
+        min-height: 48px;
+        font-size: 16px; /* prevents zoom on iOS */
+    }
+
+    #chat-input {
+        min-height: 48px;
+        font-size: 16px; /* prevents zoom on iOS */
+    }
+
+    .chat-input-area button {
+        min-height: 48px;
+    }
+
+    /* Disable hover effects on touch */
+    .fact-card:hover,
+    .stuttgart-card:hover,
+    .praktikum-card:hover,
+    .timeline-content:hover {
+        transform: none;
+    }
+
+    .praktikum-image:hover {
+        transform: none;
+    }
+}
+
+/* ---- LANDSCAPE PHONE ---- */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        min-height: auto;
+        padding: 80px 20px 40px;
+    }
+
+    .hero-star-big {
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    .hero-title {
+        font-size: 30px;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .hero-description {
+        margin-bottom: 8px;
+    }
+
+    .hero-tagline {
+        margin-bottom: 15px;
+    }
+
+    #login-screen {
+        overflow-y: auto;
+    }
+
+    .login-container {
+        margin: 20px auto;
     }
 }
 
