@@ -43,10 +43,14 @@ body {
 }
 
 .login-star {
-    font-size: 60px;
-    color: #c4a35a;
     margin-bottom: 15px;
     filter: drop-shadow(0 0 20px rgba(196, 163, 90, 0.5));
+    color: #c4a35a;
+}
+
+.login-star .mercedes-logo {
+    width: 80px;
+    height: 80px;
 }
 
 .login-title {
@@ -213,11 +217,15 @@ body {
 }
 
 .hero-star-big {
-    font-size: 100px;
     color: #c4a35a;
     filter: drop-shadow(0 0 40px rgba(196, 163, 90, 0.5));
     animation: starPulse 3s ease-in-out infinite;
     margin-bottom: 20px;
+}
+
+.hero-star-big .mercedes-logo {
+    width: 120px;
+    height: 120px;
 }
 
 @keyframes starPulse {
