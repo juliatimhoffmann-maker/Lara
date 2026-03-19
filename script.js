@@ -320,16 +320,16 @@ const quizQuestions = [
         explanation: "Mercedes-Benz wurde 1926 durch die Fusion von Daimler und Benz gegründet."
     },
     {
-        question: "Was hat Mercedes-Benz als erster Autohersteller in Serienfahrzeugen eingebaut?",
-        answers: ["Klimaanlage", "Airbag", "Sitzheizung"],
+        question: "Was brachte Mercedes-Benz 1981 als erster europäischer Hersteller in die Serienproduktion?",
+        answers: ["Klimaanlage", "Airbag mit Gurtstraffer", "Sitzheizung"],
         correct: 1,
-        explanation: "Mercedes-Benz war Pionier beim Einbau von Airbags in Serienfahrzeugen!"
+        explanation: "Mercedes-Benz war 1981 der erste europäische Hersteller mit Airbag und Gurtstraffer in Serie!"
     },
     {
         question: "Wie viel hat der Bau des Mercedes-Benz Museums gekostet (ohne Autos)?",
         answers: ["50 Millionen €", "150 Millionen €", "200 Millionen €"],
         correct: 1,
-        explanation: "Das Museum hat über 150 Millionen Euro gekostet – ohne die wertvollen Autos darin!"
+        explanation: "Das Museum hat rund 150 Millionen Euro gekostet – ohne die wertvollen Autos darin!"
     },
     {
         question: "Was passiert im Mercedes-Benz Museum, wenn es brennt?",
@@ -338,10 +338,10 @@ const quizQuestions = [
         explanation: "Ein Tornado entzieht dem Feuer den Sauerstoff, damit die Autos nicht durch Wasser beschädigt werden!"
     },
     {
-        question: "Wie viel hat ein anonymer Käufer für eines der seltensten Mercedes-Autos bezahlt?",
-        answers: ["50 Millionen €", "100 Millionen €", "160 Millionen €"],
+        question: "Wie viel wurde 2022 für das teuerste Auto der Welt (Mercedes 300 SLR) bezahlt?",
+        answers: ["50 Millionen €", "100 Millionen €", "135 Millionen €"],
         correct: 2,
-        explanation: "160 Millionen Euro! Das Auto gibt es nur 2 Mal auf der ganzen Welt."
+        explanation: "135 Millionen Euro! Das Uhlenhaut Coupé gibt es nur 2 Mal auf der ganzen Welt."
     },
     {
         question: "Wofür steht 'KI' in der IT-Abteilung?",
@@ -514,7 +514,7 @@ const chatResponses = {
     mitarbeiter: {
         patterns: ['mitarbeiter', 'angestellte', 'beschäftigte', 'wie viele arbeiten'],
         responses: [
-            'Mercedes-Benz hat weltweit etwa 170.000 Mitarbeiter! In Stuttgart allein gibt es mehrere große Standorte wie Untertürkheim und Sindelfingen. 👥'
+            'Mercedes-Benz hat weltweit rund 164.000 Mitarbeiter! In Stuttgart allein gibt es mehrere große Standorte wie Untertürkheim und Sindelfingen. 👥'
         ]
     },
     // Spaß/Gefallen
