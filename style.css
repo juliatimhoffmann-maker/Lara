@@ -205,12 +205,19 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    background-image: url('images/gruppenfoto.jpg');
-    background-position: center center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: #0d0d0d;
+    background: #0d0d0d;
     overflow: hidden;
+}
+
+.hero-bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 0;
 }
 
 .hero-section::before {
