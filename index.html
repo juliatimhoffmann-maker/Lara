@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercedes-Benz Praktikum | Lara Hoffmann</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ==================== LOGIN SCREEN ==================== -->
+    <div id="login-screen">
+        <div class="login-container">
+            <div class="login-star">&#9733;</div>
+            <h1 class="login-title">Mercedes-Benz</h1>
+            <p class="login-subtitle">Praktikum 2026 &mdash; Lara Hoffmann</p>
+            <div class="login-form">
+                <input type="password" id="password-input" placeholder="Passwort eingeben..." autocomplete="off">
+                <button id="login-btn" onclick="checkPassword()">Einloggen</button>
+                <p id="login-error" class="login-error"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN WEBSITE ==================== -->
+    <div id="main-website" style="display:none;">
+
+        <!-- NAVIGATION -->
+        <nav id="navbar">
+            <div class="nav-brand">
+                <span class="nav-star">&#9733;</span> Mercedes-Benz Praktikum
+            </div>
+            <button class="nav-toggle" onclick="toggleMenu()">&#9776;</button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home" onclick="closeMenu()">Start</a></li>
+                <li><a href="#about" onclick="closeMenu()">&Uuml;ber Mercedes</a></li>
+                <li><a href="#stuttgart" onclick="closeMenu()">Stuttgart</a></li>
+                <li><a href="#praktikum" onclick="closeMenu()">Mein Praktikum</a></li>
+                <li><a href="#quiz" onclick="closeMenu()">Quiz</a></li>
+                <li><a href="#end" onclick="closeMenu()">Abschluss</a></li>
+            </ul>
+        </nav>
+
+        <!-- SECTION 1: STARTSEITE -->
+        <section id="home" class="section hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <div class="hero-star-big">&#9733;</div>
+                <h1 class="hero-title">Mercedes-Benz</h1>
+                <h2 class="hero-subtitle">Sch&uuml;lerpraktikum 2026</h2>
+                <p class="hero-description">Lara Hoffmann &bull; Orianienschule Wiesbaden &bull; Klasse 9<br>9. M&auml;rz &ndash; 20. M&auml;rz 2026 &bull; IT-Abteilung Stuttgart</p>
+                <p class="hero-tagline">K&uuml;nstliche Intelligenz &amp; die Zukunft der Mobilit&auml;t</p>
+                <a href="#about" class="hero-btn">Entdecken &darr;</a>
+            </div>
+            <div class="hero-ki-badge">
+                <span>&#129302;</span> Powered by KI
+            </div>
+        </section>
+
+        <!-- SECTION 2: ÜBER MERCEDES -->
+        <section id="about" class="section">
+            <div class="section-container">
+                <h2 class="section-title">&Uuml;ber Mercedes-Benz</h2>
+                <p class="section-intro">Eine Legende der Automobilgeschichte</p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">&#128663;</div>
+                        <div class="timeline-content">
+                            <h3>Carl Benz &ndash; Der Erfinder des Automobils</h3>
+                            <p>Carl Benz gilt als der Erfinder des ersten Automobils. Mit seinem Patent-Motorwagen Nr. 1 legte er 1886 den Grundstein f&uuml;r die gesamte Automobilindustrie. Ohne ihn w&uuml;rde es heute keine Autos geben!</p>
+                            <div class="image-placeholder" id="carl-benz-img">
+                                <span>&#128247; Bild von Carl Benz<br><small>(wird noch hinzugef&uuml;gt)</small></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">&#127942;</div>
+                        <div class="timeline-content">
+                            <h3>Gr&uuml;ndung 1926</h3>
+                            <p>Mercedes-Benz wurde <strong>1926</strong> gegr&uuml;ndet, als die Daimler-Motoren-Gesellschaft und Benz &amp; Cie. fusionierten. Seitdem steht der Name Mercedes-Benz f&uuml;r Luxus, Qualit&auml;t und Innovation.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">&#128737;&#65039;</div>
+                        <div class="timeline-content">
+                            <h3>Erfinder des Airbags</h3>
+                            <p>Mercedes-Benz war der <strong>erste Automobilhersteller</strong>, der Airbags in Serienfahrzeugen einbaute. Damit haben sie unz&auml;hlige Leben gerettet und die Sicherheit im Stra&szlig;enverkehr revolution&auml;r verbessert.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">&#10024;</div>
+                        <div class="timeline-content">
+                            <h3>Luxus, Qualit&auml;t &amp; Fahrkomfort</h3>
+                            <p>Mercedes-Benz legt gro&szlig;en Wert auf <strong>Luxus, Qualit&auml;t und Fahrkomfort</strong>. Jedes Fahrzeug wird mit h&ouml;chster Pr&auml;zision gefertigt &ndash; das sp&uuml;rt man bei jeder Fahrt.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="facts-grid">
+                    <div class="fact-card museum-card">
+                        <div class="fact-icon">&#127963;&#65039;</div>
+                        <h3>Das Mercedes-Benz Museum</h3>
+                        <p>Mercedes-Benz war der <strong>erste Automobilhersteller mit einem eigenen Museum</strong>. Der Bau hat &uuml;ber <strong>150 Millionen Euro</strong> gekostet &ndash; und da sind die wertvollen Autos drinnen noch nicht mal mitgez&auml;hlt!</p>
+                    </div>
+
+                    <div class="fact-card money-card">
+                        <div class="fact-icon">&#128176;</div>
+                        <h3>160 Millionen f&uuml;r ein Auto</h3>
+                        <p>Ein anonymer K&auml;ufer hat eines der Autos aus der Sammlung f&uuml;r unglaubliche <strong>160 Millionen Euro</strong> gekauft. Es gibt dieses Modell nur <strong>2 Mal auf der ganzen Welt</strong>!</p>
+                    </div>
+
+                    <div class="fact-card fire-card">
+                        <div class="fact-icon">&#127786;&#65039;</div>
+                        <h3>Schutz durch Tornado</h3>
+                        <p>Das Museum hat so teure Inhalte, dass bei einem Brand <strong>kein Wasser</strong> zum L&ouml;schen kommt. Stattdessen entsteht ein <strong>Tornado, der dem Feuer den Sauerstoff entzieht</strong> &ndash; damit die wertvollen Autos nicht besch&auml;digt werden!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: MERCEDES IN STUTTGART -->
+        <section id="stuttgart" class="section section-dark">
+            <div class="section-container">
+                <h2 class="section-title">Mercedes-Benz in Stuttgart</h2>
+                <p class="section-intro">Das Herz von Mercedes-Benz schl&auml;gt in Stuttgart</p>
+
+                <div class="stuttgart-grid">
+                    <div class="stuttgart-card">
+                        <div class="stuttgart-icon">&#127970;</div>
+                        <h3>Hauptsitz Untert&uuml;rkheim</h3>
+                        <p>Die Konzernzentrale der Mercedes-Benz Group AG befindet sich in Stuttgart-Untert&uuml;rkheim. Von hier aus wird das weltweite Gesch&auml;ft gesteuert.</p>
+                    </div>
+
+                    <div class="stuttgart-card">
+                        <div class="stuttgart-icon">&#9881;&#65039;</div>
+                        <h3>Werk Sindelfingen</h3>
+                        <p>Eines der gr&ouml;&szlig;ten und modernsten Automobilwerke der Welt. Hier werden die Luxusmodelle wie die S-Klasse und der EQS gefertigt.</p>
+                    </div>
+
+                    <div class="stuttgart-card">
+                        <div class="stuttgart-icon">&#127963;&#65039;</div>
+                        <h3>Mercedes-Benz Museum</h3>
+                        <p>Das Museum in Stuttgart-Bad Cannstatt zeigt auf 16.500 m&sup2; die gesamte Automobilgeschichte &ndash; von 1886 bis heute. &Uuml;ber 160 Fahrzeuge sind ausgestellt.</p>
+                    </div>
+
+                    <div class="stuttgart-card">
+                        <div class="stuttgart-icon">&#128187;</div>
+                        <h3>IT &amp; KI-Abteilung</h3>
+                        <p>In der IT-Abteilung wird an der Zukunft gearbeitet: K&uuml;nstliche Intelligenz, autonomes Fahren und digitale Services. Hier durfte ich mein Praktikum machen!</p>
+                    </div>
+                </div>
+
+                <div class="stats-bar">
+                    <div class="stat">
+                        <span class="stat-number" data-target="170000">0</span>
+                        <span class="stat-label">Mitarbeiter weltweit</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="30">0</span>
+                        <span class="stat-label">Werke weltweit</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="1886">0</span>
+                        <span class="stat-label">Gegr&uuml;ndet</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="150000">0</span>
+                        <span class="stat-label">Besucher im Museum/Jahr</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: MEIN PRAKTIKUM -->
+        <section id="praktikum" class="section">
+            <div class="section-container">
+                <h2 class="section-title">Mein Praktikum</h2>
+                <p class="section-intro">9. M&auml;rz &ndash; 20. M&auml;rz 2026 &bull; IT-Abteilung Stuttgart</p>
+
+                <div class="praktikum-intro">
+                    <div class="praktikum-profile">
+                        <div class="profile-circle">LH</div>
+                        <h3>Lara Hoffmann</h3>
+                        <p>Orianienschule Wiesbaden &bull; Klasse 9</p>
+                    </div>
+                </div>
+
+                <div class="praktikum-content">
+                    <div class="praktikum-card">
+                        <h3>&#128188; Was habe ich gemacht?</h3>
+                        <p class="placeholder-text">Hier kommen bald meine Erlebnisse und Erfahrungen aus dem Praktikum...</p>
+                        <p class="placeholder-hint">(Wird noch von Lara erg&auml;nzt)</p>
+                    </div>
+
+                    <div class="praktikum-card">
+                        <h3>&#128161; Was habe ich gelernt?</h3>
+                        <p class="placeholder-text">Hier kommen meine Learnings und neuen Erkenntnisse...</p>
+                        <p class="placeholder-hint">(Wird noch von Lara erg&auml;nzt)</p>
+                    </div>
+
+                    <div class="praktikum-card">
+                        <h3>&#11088; Wie fand ich es?</h3>
+                        <p class="placeholder-text">Hier kommt mein pers&ouml;nliches Fazit...</p>
+                        <p class="placeholder-hint">(Wird noch von Lara erg&auml;nzt)</p>
+                    </div>
+
+                    <div class="praktikum-card highlight-card">
+                        <h3>&#128269; Problemfrage</h3>
+                        <p class="placeholder-text">Hier kommt die Problemfrage meines Praktikums...</p>
+                        <p class="placeholder-hint">(Wird noch von Lara erg&auml;nzt)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: QUIZ -->
+        <section id="quiz" class="section section-dark">
+            <div class="section-container">
+                <h2 class="section-title">Quiz</h2>
+                <p class="section-intro">Teste dein Wissen &uuml;ber Mercedes-Benz und KI!</p>
+
+                <div id="quiz-container">
+                    <div id="quiz-progress">
+                        <div id="quiz-progress-bar"></div>
+                    </div>
+                    <div id="quiz-question-number"></div>
+                    <h3 id="quiz-question"></h3>
+                    <div id="quiz-answers"></div>
+                    <div id="quiz-feedback"></div>
+                    <button id="quiz-next-btn" onclick="nextQuestion()" style="display:none;">N&auml;chste Frage &rarr;</button>
+                </div>
+
+                <div id="quiz-result" style="display:none;">
+                    <div class="result-star">&#9733;</div>
+                    <h3 id="quiz-result-title"></h3>
+                    <p id="quiz-result-text"></p>
+                    <div id="quiz-score-display"></div>
+                    <button onclick="restartQuiz()" class="hero-btn">Nochmal spielen</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: ABSCHLUSS + CHAT -->
+        <section id="end" class="section">
+            <div class="section-container">
+                <h2 class="section-title">Abschluss</h2>
+                <p class="section-intro">Danke f&uuml;rs Anschauen meiner Praktikums-Website!</p>
+
+                <div class="end-message">
+                    <div class="end-star">&#9733;</div>
+                    <p>Ich bedanke mich bei meinem Onkel und dem gesamten Team der IT-Abteilung bei Mercedes-Benz in Stuttgart f&uuml;r diese tolle Erfahrung. Es war ein unvergessliches Praktikum!</p>
+                    <p class="end-signature">&mdash; Lara Hoffmann, M&auml;rz 2026</p>
+                </div>
+
+                <div class="chat-section">
+                    <h3>&#128172; Frag mich was!</h3>
+                    <p class="chat-description">Hast du Fragen zu meinem Praktikum? Stell sie hier!</p>
+                    <div id="chat-messages">
+                        <div class="chat-msg bot-msg">
+                            <span class="chat-avatar">&#129302;</span>
+                            <div class="chat-bubble">Hallo! Ich bin Laras Praktikums-Bot. Frag mich alles &uuml;ber das Praktikum bei Mercedes-Benz! &#128522;</div>
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="Schreib deine Frage..." onkeypress="if(event.key==='Enter')sendChat()">
+                        <button onclick="sendChat()">Senden</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>&copy; 2026 Lara Hoffmann &bull; Sch&uuml;lerpraktikum Mercedes-Benz Stuttgart</p>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
