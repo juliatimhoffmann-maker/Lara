@@ -625,7 +625,7 @@ function levenshtein(a, b) {
 
 function findResponse(message) {
     const lowerMsg = message.toLowerCase().trim()
-        .replace(/ä/g, 'ä').replace(/ö/g, 'ö').replace(/ü/g, 'ü').replace(/ß/g, 'ß');
+        .replace(/ae/g, 'ä').replace(/oe/g, 'ö').replace(/ue/g, 'ü').replace(/ss/g, 'ß');
 
     // Suche nach passender Kategorie (exakter Match zuerst)
     for (const category of Object.values(chatResponses)) {
@@ -730,6 +730,7 @@ function sendChat() {
         `;
         chatMessages.appendChild(botDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
+        input.focus();
     }, 800 + Math.random() * 700);
 }
 

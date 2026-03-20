@@ -1063,13 +1063,14 @@ body {
     background: #f5f5f5;
     border-radius: 16px;
     padding: 20px;
-    height: 350px;
+    height: 420px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 15px;
     margin-bottom: 15px;
     border: 1px solid rgba(0, 0, 0, 0.06);
+    scroll-behavior: smooth;
 }
 
 .chat-msg {
