@@ -254,6 +254,18 @@ const quizQuestions = [
         answers: ["Stuttgart", "München", "Berlin"],
         correct: 0,
         explanation: "In Stuttgart – dem Herzen von Mercedes-Benz!"
+    },
+    {
+        question: "Wie heißt das autonome Fahrsystem von Mercedes-Benz, das seit 2021 Level 3 ermöglicht?",
+        answers: ["AutoPilot", "DRIVE PILOT", "CruiseControl AI"],
+        correct: 1,
+        explanation: "Der DRIVE PILOT nutzt über 35 Sensoren und erlaubt autonomes Fahren bis 95 km/h – Mercedes war der erste Hersteller weltweit mit Level-3-Zulassung!"
+    },
+    {
+        question: "Welches Gebäude hat Lara während ihres Praktikums besucht, in dem es um KI und Innovation geht?",
+        answers: ["Tesla Gigafactory", "IPAI Spaces", "Google Campus"],
+        correct: 1,
+        explanation: "IPAI Spaces in Heilbronn – ein modernes Gebäude für KI und Innovation, wo Lara spannende Einblicke bekam!"
     }
 ];
 
