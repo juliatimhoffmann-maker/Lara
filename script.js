@@ -405,8 +405,8 @@ const chatResponses = {
     highlight: {
         patterns: ['highlight', 'lieblings', 'bester tag', 'bestes', 'favorit', 'am besten', 'am meisten'],
         responses: [
-            'Laras persönliches Highlight war der Dienstag in der ersten Woche! 🌟 Da war sie zusammen mit Aleks Wiedak und Thomas Kastle unterwegs. Der Tag war super abwechslungsreich und genau das, wofür sie sich interessiert!',
-            'Der beste Tag? Definitiv der Dienstag in Woche 1! 🌟 Lara war mit Aleks Wiedak und Thomas Kastle unterwegs und hat genau die Dinge gemacht, die sie am meisten begeistern!'
+            'Laras persönliches Highlight war der Dienstag in der ersten Woche! 🌟 Da war sie zusammen mit Aleks Widak und Thomas Kastle unterwegs. Der Tag war super abwechslungsreich und genau das, wofür sie sich interessiert!',
+            'Der beste Tag? Definitiv der Dienstag in Woche 1! 🌟 Lara war mit Aleks Widak und Thomas Kastle unterwegs und hat genau die Dinge gemacht, die sie am meisten begeistern!'
         ]
     },
     // Werk / Fabrik
@@ -529,10 +529,10 @@ const chatResponses = {
     },
     // Mitarbeiter / Team
     mitarbeiter: {
-        patterns: ['mitarbeiter', 'angestellte', 'beschäftigte', 'wie viele arbeiten', 'team', 'kollegen', 'aleks', 'thomas', 'kastle', 'wiedak'],
+        patterns: ['mitarbeiter', 'angestellte', 'beschäftigte', 'wie viele arbeiten', 'team', 'kollegen', 'aleks', 'thomas', 'kastle', 'widak'],
         responses: [
-            'Mercedes-Benz hat weltweit rund 164.000 Mitarbeiter! 👥 Lara war besonders beeindruckt von der herzlichen Aufnahme im Team. Aleks Wiedak und Thomas Kastle waren an ihrem Lieblingstag dabei!',
-            'Das Team war super nett zu Lara! 👥 Besonders Aleks Wiedak und Thomas Kastle haben einen bleibenden Eindruck hinterlassen. Insgesamt hat Mercedes-Benz rund 164.000 Mitarbeiter weltweit!'
+            'Mercedes-Benz hat weltweit rund 164.000 Mitarbeiter! 👥 Lara war besonders beeindruckt von der herzlichen Aufnahme im Team. Aleks Widak und Thomas Kastle waren an ihrem Lieblingstag dabei!',
+            'Das Team war super nett zu Lara! 👥 Besonders Aleks Widak und Thomas Kastle haben einen bleibenden Eindruck hinterlassen. Insgesamt hat Mercedes-Benz rund 164.000 Mitarbeiter weltweit!'
         ]
     },
     // Spaß/Gefallen
