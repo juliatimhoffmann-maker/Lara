@@ -1,9 +1,71 @@
 // ==================== PASSWORT SCHUTZ ====================
-function checkPassword() {
+// Passwort wird als SHA-256 Hash gespeichert (nicht im Klartext)
+const PASS_HASH = 'b9da2f77f8130780b6ea06f0b6d0fb61ca44acf85517dec736f5dc2b2bef9190';
+
+// Rate-Limiting: max. 5 Versuche, dann 60 Sekunden Sperre
+const MAX_ATTEMPTS = 5;
+const LOCKOUT_DURATION = 60000; // 60 Sekunden in ms
+let loginAttempts = 0;
+let lockoutUntil = 0;
+
+// Session-Timeout: 30 Minuten Inaktivität = automatischer Logout
+const SESSION_TIMEOUT = 30 * 60 * 1000;
+let sessionTimer = null;
+let isLoggedIn = false;
+
+async function hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function resetSessionTimer() {
+    if (sessionTimer) clearTimeout(sessionTimer);
+    if (isLoggedIn) {
+        sessionTimer = setTimeout(() => {
+            doLogout();
+            alert('Sitzung abgelaufen. Bitte erneut einloggen.');
+        }, SESSION_TIMEOUT);
+    }
+}
+
+function doLogout() {
+    isLoggedIn = false;
+    if (sessionTimer) clearTimeout(sessionTimer);
+    document.getElementById('login-screen').style.display = '';
+    document.getElementById('login-screen').style.opacity = '1';
+    document.getElementById('login-screen').style.transition = '';
+    const main = document.getElementById('main-website');
+    main.style.position = 'absolute';
+    main.style.visibility = 'hidden';
+    main.style.opacity = '0';
+    main.style.animation = '';
+    document.getElementById('password-input').value = '';
+    document.getElementById('login-error').textContent = '';
+}
+
+async function checkPassword() {
     const input = document.getElementById('password-input').value;
     const error = document.getElementById('login-error');
 
-    if (input === 'lara123.cool#090984') {
+    // Rate-Limiting prüfen
+    const now = Date.now();
+    if (now < lockoutUntil) {
+        const remaining = Math.ceil((lockoutUntil - now) / 1000);
+        error.textContent = `Zu viele Versuche! Warte noch ${remaining} Sekunden.`;
+        document.getElementById('password-input').value = '';
+        return;
+    }
+
+    const inputHash = await hashPassword(input);
+
+    if (inputHash === PASS_HASH) {
+        loginAttempts = 0;
+        isLoggedIn = true;
+        resetSessionTimer();
+
         document.getElementById('login-screen').style.opacity = '0';
         document.getElementById('login-screen').style.transition = 'opacity 0.5s ease';
         setTimeout(() => {
@@ -16,11 +78,19 @@ function checkPassword() {
             startCountAnimation();
         }, 500);
     } else {
-        error.textContent = 'Falsches Passwort! Versuch es nochmal.';
+        loginAttempts++;
+        const attemptsLeft = MAX_ATTEMPTS - loginAttempts;
+
+        if (loginAttempts >= MAX_ATTEMPTS) {
+            lockoutUntil = now + LOCKOUT_DURATION;
+            loginAttempts = 0;
+            error.textContent = `Zu viele Fehlversuche! Gesperrt für 60 Sekunden.`;
+        } else {
+            error.textContent = `Falsches Passwort! Noch ${attemptsLeft} Versuche übrig.`;
+        }
         document.getElementById('password-input').style.borderColor = '#ff6b8a';
         document.getElementById('password-input').value = '';
         setTimeout(() => {
-            error.textContent = '';
             document.getElementById('password-input').style.borderColor = '';
         }, 3000);
     }
@@ -30,6 +100,46 @@ function checkPassword() {
 document.getElementById('password-input').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') checkPassword();
 });
+
+// Session-Timeout bei Aktivität zurücksetzen
+['mousemove', 'keypress', 'click', 'scroll', 'touchstart'].forEach(event => {
+    document.addEventListener(event, resetSessionTimer, { passive: true });
+});
+
+// Schutz: Rechtsklick und Quelltext-Zugriff erschweren
+document.addEventListener('contextmenu', function(e) {
+    if (!isLoggedIn) e.preventDefault();
+});
+
+// Schutz: Bestimmte Tastenkombinationen blockieren (F12, Ctrl+Shift+I, Ctrl+U)
+document.addEventListener('keydown', function(e) {
+    if (!isLoggedIn) {
+        if (e.key === 'F12' ||
+            (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) ||
+            (e.ctrlKey && (e.key === 'U' || e.key === 'u'))) {
+            e.preventDefault();
+        }
+    }
+});
+
+// Schutz: Main-Website Sichtbarkeit überwachen (gegen Konsolen-Bypass)
+(function protectContent() {
+    const observer = new MutationObserver(function() {
+        const main = document.getElementById('main-website');
+        if (!isLoggedIn && main) {
+            if (main.style.visibility !== 'hidden' || main.style.opacity !== '0') {
+                main.style.visibility = 'hidden';
+                main.style.opacity = '0';
+                main.style.position = 'absolute';
+            }
+        }
+    });
+
+    const main = document.getElementById('main-website');
+    if (main) {
+        observer.observe(main, { attributes: true, attributeFilter: ['style'] });
+    }
+})();
 
 // ==================== NAVIGATION ====================
 function toggleMenu() {
@@ -425,4 +535,29 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         scrollObserver.observe(el);
     });
+
+    // Event-Listener statt inline onclick (sicherer gegen XSS)
+    document.getElementById('login-btn').addEventListener('click', checkPassword);
+    document.getElementById('nav-toggle-btn').addEventListener('click', toggleMenu);
+    document.getElementById('quiz-next-btn').addEventListener('click', nextQuestion);
+    document.getElementById('quiz-restart-btn').addEventListener('click', restartQuiz);
+    document.getElementById('chat-send-btn').addEventListener('click', sendChat);
+    document.getElementById('chat-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') sendChat();
+    });
+    document.querySelectorAll('.nav-close-link').forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // DevTools-Schutz: Warnung wenn jemand die Konsole öffnet
+    const devtoolsWarning = function() {
+        const threshold = 160;
+        if (window.outerWidth - window.innerWidth > threshold ||
+            window.outerHeight - window.innerHeight > threshold) {
+            if (!isLoggedIn) {
+                document.getElementById('login-error').textContent = 'Bitte logge dich zuerst ein.';
+            }
+        }
+    };
+    setInterval(devtoolsWarning, 2000);
 });

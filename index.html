@@ -19,7 +19,7 @@
             <p class="login-subtitle">Praktikum 2026 &mdash; Lara Hoffmann</p>
             <div class="login-form">
                 <input type="password" id="password-input" placeholder="Passwort eingeben..." autocomplete="off">
-                <button id="login-btn" onclick="checkPassword()">Einloggen</button>
+                <button id="login-btn">Einloggen</button>
                 <p id="login-error" class="login-error"></p>
             </div>
         </div>
@@ -33,14 +33,14 @@
             <div class="nav-brand">
                 <span class="nav-star">&#9733;</span> Mercedes-Benz Praktikum
             </div>
-            <button class="nav-toggle" onclick="toggleMenu()">&#9776;</button>
+            <button class="nav-toggle" id="nav-toggle-btn">&#9776;</button>
             <ul class="nav-links" id="nav-links">
-                <li><a href="#home" onclick="closeMenu()">Start</a></li>
-                <li><a href="#about" onclick="closeMenu()">&Uuml;ber Mercedes</a></li>
-                <li><a href="#stuttgart" onclick="closeMenu()">Stuttgart</a></li>
-                <li><a href="#praktikum" onclick="closeMenu()">Mein Praktikum</a></li>
-                <li><a href="#quiz" onclick="closeMenu()">Quiz</a></li>
-                <li><a href="#end" onclick="closeMenu()">Abschluss</a></li>
+                <li><a href="#home" class="nav-close-link">Start</a></li>
+                <li><a href="#about" class="nav-close-link">&Uuml;ber Mercedes</a></li>
+                <li><a href="#stuttgart" class="nav-close-link">Stuttgart</a></li>
+                <li><a href="#praktikum" class="nav-close-link">Mein Praktikum</a></li>
+                <li><a href="#quiz" class="nav-close-link">Quiz</a></li>
+                <li><a href="#end" class="nav-close-link">Abschluss</a></li>
             </ul>
         </nav>
 
@@ -350,7 +350,7 @@
                     <h3 id="quiz-question"></h3>
                     <div id="quiz-answers"></div>
                     <div id="quiz-feedback"></div>
-                    <button id="quiz-next-btn" onclick="nextQuestion()" style="display:none;">N&auml;chste Frage &rarr;</button>
+                    <button id="quiz-next-btn" style="display:none;">N&auml;chste Frage &rarr;</button>
                 </div>
 
                 <div id="quiz-result" style="display:none;">
@@ -358,7 +358,7 @@
                     <h3 id="quiz-result-title"></h3>
                     <p id="quiz-result-text"></p>
                     <div id="quiz-score-display"></div>
-                    <button onclick="restartQuiz()" class="hero-btn">Nochmal spielen</button>
+                    <button id="quiz-restart-btn" class="hero-btn">Nochmal spielen</button>
                 </div>
             </div>
         </section>
@@ -389,8 +389,8 @@
                         </div>
                     </div>
                     <div class="chat-input-area">
-                        <input type="text" id="chat-input" placeholder="Schreib deine Frage..." onkeypress="if(event.key==='Enter')sendChat()">
-                        <button onclick="sendChat()">Senden</button>
+                        <input type="text" id="chat-input" placeholder="Schreib deine Frage...">
+                        <button id="chat-send-btn">Senden</button>
                     </div>
                 </div>
             </div>
